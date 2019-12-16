@@ -2,6 +2,8 @@ package mx.com.bwl.mutation.service;
 
 
 
+import java.sql.Timestamp;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,7 @@ final private UserRepository userRepository;
  */
 @Transactional
 public User createUser(User user) {
+	user.setCreated(new Timestamp(System.currentTimeMillis()));
 	return this.userRepository.save(user);
 }
 
