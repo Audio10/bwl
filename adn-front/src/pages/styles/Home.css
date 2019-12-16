@@ -1,0 +1,21 @@
+.container-superior {
+    background-color: blue;
+    text-decoration: none;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    height: 40vh;
+    color: white;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.nav__button {
+    border-radius: 50px;
+    width: 150px;
+    
+}
+

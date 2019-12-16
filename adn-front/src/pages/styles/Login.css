@@ -1,9 +1,10 @@
-body {
-    background: url('../../images/fondo.png') no-repeat center center fixed;
+.fondo {
+    background: url('../../images/fondo.png') no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100vh;
 }
 
 .circulo {
@@ -45,7 +46,7 @@ body {
     color: #c52764;
 }
 
-pinta {
+.pinta {
     border: 20px solid red;
 }
 
@@ -54,7 +55,7 @@ pinta {
     justify-content: flex-end;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1440px) {
     .circulo--izquierdo {
         bottom: 15%;
         left: -22rem;
@@ -79,10 +80,17 @@ pinta {
     }
 }
 
+@media screen and (max-width: 1024px) {
 
-/* AGREGA UN MEDIA QUERIE SI EL ANCHO ES MENOR DE 768 */
+}
 
 @media screen and (max-width: 768px) {
+    .formulario--izquierda {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 425px) {
     .circulo--izquierdo {
         display: none;
     }
@@ -92,8 +100,7 @@ pinta {
     .circulo--medio {
         display: none;
     }
-    .formulario--izquierda {
-        display: inline-block;
-        text-align: center;
-    }
+    
 }
+
+@media screen and (max-width: 320px) {}
