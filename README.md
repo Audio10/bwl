@@ -10,7 +10,7 @@ Para el desarrollo del proyecto se ocuparon Herramientas como MySQL, Postman, Fl
 
 ## Base de datos.
 
-La aplicacion esta completamente preparada para realizar la migracion de la base de datos a un motor MySQL lo unico se se debe hacer es crear la base de datos antes de correr el api, lo cual se hace con la siguiente sentencia SQL.
+La aplicacion esta completamente preparada para realizar la migracion de la base de datos a un motor MySQL lo unico se se debe hacer es crear la base de datos antes de correr el api,cambiar el usuario y contraseña de la base de datos que se encuentran en el application.yml, lo cual se hace con la siguiente sentencia SQL.
 
 ```
 CREATE DATABASE bwl;
