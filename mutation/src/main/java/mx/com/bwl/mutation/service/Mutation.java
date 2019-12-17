@@ -11,10 +11,9 @@ public class Mutation {
 
 	private char[][] secuencia;
 	
-	public boolean hasMutation(String[] dna) {
-
+	public boolean hasMutation(String [] dna) {
         divide(dna);
-
+        
         return MutacionOD(secuencia);
     }
 
@@ -102,8 +101,9 @@ public class Mutation {
                         return true;
                     }
                 }
-
-                if (matriz[j-1][i] == matriz[j][i] && matriz[j][i] == matriz[j][i+1] ){
+                
+                System.out.println(matriz[j-1][i]+ "-"+matriz[j][i]+ "-"+matriz[j+1][i]+"-"+matriz[j+2][i]);
+                if (matriz[j-1][i] == matriz[j][i] && matriz[j][i] == matriz[j+1][i] ){
 
                     if (matriz[j+1][i] == matriz[j+2][i] ){
                         return true;

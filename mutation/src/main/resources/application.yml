@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/bwl?useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://bwl-claudio.ce0omfjqfaz2.us-east-2.rds.amazonaws.com:3306/bwl?useLegacyDatetimeCode=false&serverTimezone=UTC
     username: claudio
     password: america2010
   flyway:

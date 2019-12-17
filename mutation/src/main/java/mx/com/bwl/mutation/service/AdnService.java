@@ -74,9 +74,14 @@ public class AdnService {
 		adn.setCreated(new Timestamp(System.currentTimeMillis()));
 		return this.adnRepository.save(adn);
 	}
+
+	public Boolean hasMutation(AdnDTO adnDTO) {
+		boolean mut = mutation.hasMutation(adnDTO.getDna());		
+		return mut;
+	}
 	
 	@Transactional
-	public Boolean hasMutation(AdnDTO adnDTO) {
+	public Boolean hasMutationAndCreate(AdnDTO adnDTO) {
 		String adnS="";
 		boolean mut = mutation.hasMutation(adnDTO.getDna());
 		

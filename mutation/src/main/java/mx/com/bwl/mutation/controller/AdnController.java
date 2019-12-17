@@ -37,22 +37,13 @@ public class AdnController {
 	private final AdnService adnService;
 	
 	@PostMapping
-	@ApiOperation(value = "Crear Sequencia.", notes = "Este EndPoint crea una secuencia de ADN.")
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Creacion Correcta."),
-							@ApiResponse(code = 400, message = "No se pudo Generar por duplicidad tal vez.")})
+	@ApiOperation(value = "Mutation.", notes = "Este EndPoint compara una secuencia de ADN.")
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "Tiene Mutacion."),
+							@ApiResponse(code = 403, message = "No tiene mutacion.")})
 	public ResponseEntity<Void> createAdn(@RequestBody AdnDTO adnDTO){
 		boolean mutation = false;
-		try {
-			boolean valida = adnService.validar(adnDTO.getDna());
-			
-			if ( valida == true) 
-				mutation = adnService.hasMutation(adnDTO);
-			else 
-				return new ResponseEntity<> (HttpStatus.UNSUPPORTED_MEDIA_TYPE);
-			
-		} catch (Exception e) {
-			return new ResponseEntity<> (HttpStatus.BAD_REQUEST);
-		}
+	
+		mutation = adnService.hasMutation(adnDTO);
 		
 		return new ResponseEntity<>( mutation == true ? HttpStatus.OK: HttpStatus.FORBIDDEN  );
 	}
