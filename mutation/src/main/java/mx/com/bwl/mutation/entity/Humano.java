@@ -1,62 +1,43 @@
-/**
- * 
- */
 package mx.com.bwl.mutation.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author claud
- *
- */
-
 @Entity
 @Data
-@Table(name = "adn")
+@Table(name = "humanos")
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Adn {
-
+public class Humano {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 	
-	@Column(name = "sequence", nullable = false, length = 50, unique = true)
-	private String sequence;
+	@Column(name = "name", nullable = false, length = 50)
+	private String name;
 	
-	@Column(name = "mutation", nullable = false, length = 25)
-	private boolean mutation;
-	
-	@JsonManagedReference
-	@OneToOne(mappedBy = "adn", fetch = FetchType.EAGER)
-	private Humano humano;
+	@JsonBackReference
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "adn_id", referencedColumnName = "id")
+	private Adn adn;
 	
 	@Column(name = "created")
 	private Timestamp created;
-	
-
-	public Adn(String sequence, boolean mutation) {
-		super();
-		this.sequence = sequence;
-		this.mutation = mutation;
-	}
-
-	
 	
 }

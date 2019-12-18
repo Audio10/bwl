@@ -89,7 +89,6 @@ public class Mutation {
     }
 
     private boolean MutacionHV(char[][] matriz) {
-        System.out.println("Mutacion: \n");
 
         for (int i = 0; i < matriz.length ; i++) {
             int j = 1;
@@ -102,7 +101,6 @@ public class Mutation {
                     }
                 }
                 
-                System.out.println(matriz[j-1][i]+ "-"+matriz[j][i]+ "-"+matriz[j+1][i]+"-"+matriz[j+2][i]);
                 if (matriz[j-1][i] == matriz[j][i] && matriz[j][i] == matriz[j+1][i] ){
 
                     if (matriz[j+1][i] == matriz[j+2][i] ){

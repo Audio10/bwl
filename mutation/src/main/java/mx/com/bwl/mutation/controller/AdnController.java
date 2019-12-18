@@ -42,28 +42,32 @@ public class AdnController {
 							@ApiResponse(code = 403, message = "No tiene mutacion.")})
 	public ResponseEntity<Void> createAdn(@RequestBody AdnDTO adnDTO){
 		boolean mutation = false;
-	
-		mutation = adnService.hasMutation(adnDTO);
+		boolean valida = adnService.validar(adnDTO.getDna());
+		
+		if ( valida == true) 
+			mutation = adnService.hasMutation(adnDTO);
+		else 
+			return new ResponseEntity<> (HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 		
 		return new ResponseEntity<>( mutation == true ? HttpStatus.OK: HttpStatus.FORBIDDEN  );
 	}
 	
 	@GetMapping("/all")
-	@ApiOperation(value = "Obtener todas las secuencias.", notes = "Este EndPoint obtiene todas las secuencias de adn.")
+	@ApiOperation(value = "Obtener todas las secuencias.", notes = "Este EndPoint obtiene todas las secuencias de adn con sus Humanos correspondientes.")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Todas las secuencias de ADN.")})
 	public ResponseEntity< List<Adn> > findAll() {
 		return new ResponseEntity<>(this.adnService.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/conmutation")
-	@ApiOperation(value = "Obtener todas las secuencias con mutacion.", notes = "Este EndPoint obtiene todas las secuencias de adn con mutacion.")
+	@ApiOperation(value = "Obtener todas las secuencias con mutacion.", notes = "Este EndPoint obtiene todas las secuencias de adn con mutacion con sus Humanos correspondientes.")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Todas las secuencias de ADN con mutacion.")})
 	public ResponseEntity< List<Adn> > conmutation() {
 		return new ResponseEntity<>(this.adnService.mutation(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/sinmutation")
-	@ApiOperation(value = "Obtener todas las secuencias sin mutacion.", notes = "Este EndPoint obtiene todas las secuencias de adn sin mutacion.")
+	@ApiOperation(value = "Obtener todas las secuencias sin mutacion.", notes = "Este EndPoint obtiene todas las secuencias de adn sin mutacion con sus Humanos correspondientes.")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Todas las secuencias de ADN sin mutacion.")})
 	public ResponseEntity< List<Adn> > sinmutations() {
 		return new ResponseEntity<>(this.adnService.sinMutation(), HttpStatus.OK);

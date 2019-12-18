@@ -31,22 +31,28 @@ public class AdnService {
 	
 	/**
 	 * Metodo para listar todas las secuencias de ADN.
-	 * @param user
-	 * @return
-	 * 
 	 */
 	public List<Adn> findAll() {
 		return this.adnRepository.findAll();
 	}
 	
+	/**
+	 * Metodo para listar todas las secuencias sin Mutacion.
+	 */
 	public List<Adn> sinMutation(){
 		return this.adnRepository.findNoMutation();
 	}
 	
+	/**
+	 * Metodo para listar todas las secuencias con Mutacion. 
+	 */
 	public List<Adn> mutation(){
 		return this.adnRepository.findMutation();
 	}
 	
+	/**
+	 * Metodo para verificar Status.
+	 */
 	public AdnEstadisticas estadistica() {
 		int con = this.adnRepository.countConMutation();
 		int sin = this.adnRepository.countSinMutation();
@@ -65,42 +71,54 @@ public class AdnService {
 	
 	/**
 	 * Metodo para guardar una secuencia de ADN.
-	 * @param user
-	 * @return
-	 * 
 	 */
 	@Transactional
-	public Adn createAdn(Adn adn) {
-		adn.setCreated(new Timestamp(System.currentTimeMillis()));
-		return this.adnRepository.save(adn);
-	}
-
-	public Boolean hasMutation(AdnDTO adnDTO) {
-		boolean mut = mutation.hasMutation(adnDTO.getDna());		
-		return mut;
+	public void createAdn(String[] squence, boolean mut) {
+		String id = getSquence(squence);
+		Adn adn = adnRepository.findBySequence(id);
+		if (adn == null) {
+			adn = new Adn();
+			adn.setSequence(id);
+			adn.setMutation(mut);
+			adn.setCreated(new Timestamp(System.currentTimeMillis()));
+			this.adnRepository.save(adn);
+		}
+			
 	}
 	
-	@Transactional
-	public Boolean hasMutationAndCreate(AdnDTO adnDTO) {
-		String adnS="";
-		boolean mut = mutation.hasMutation(adnDTO.getDna());
-		
-		for (String secuencia : adnDTO.getDna()) {
-			adnS+= secuencia+"-";
+	/**
+	 * Metodo para obtener la Secuencia que se guardara en la base de datos.
+	 */
+	public String getSquence(String[] squence) {
+		String squenceT="";
+		for(String cadena : squence) {
+			squenceT+=cadena+"-";
 		}
 		
-		Adn adn = new Adn(adnS.substring(0,adnS.length()-1) , mut);
-		this.createAdn(adn);
+		return squenceT.substring(0, squenceT.length()-1);
+	}
+
+	/**
+	 * Metodo que determina si una secuencia tiene mutacion.
+	 */
+	@Transactional
+	public Boolean hasMutation(AdnDTO adnDTO) {
 		
+		boolean mut = mutation.hasMutation(adnDTO.getDna());
+		this.createAdn(adnDTO.getDna(), mut);
 		return mut;
 	}
 	
+	/**
+	 * Metodo para validar caracteres de secuencia.
+	 */
 	public boolean validar(String[] adn) {
 		for (int i = 0; i < adn.length; i++) {
 			for (int j = 0; j < adn[i].length(); j++) {
 				if( adn[i].charAt(j) == 'A' || adn[i].charAt(j) == 'C' || adn[i].charAt(j) == 'T'|| adn[i].charAt(j) == 'G') {
 					
 				}else {
+					System.out.println(adn[i].charAt(j));
 					return false;
 				}
 			}
