@@ -1,0 +1,28 @@
+.estatus__container {
+    height: 70vh;
+}
+
+.estatus__data{
+    padding-bottom: 30%;
+}
+
+.estatus__titulo h1{
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.estatus__container div{
+    padding-top: 8%;
+    text-align: center;
+}
+
+@media screen and (max-width: 990px) {
+    .estatus__container {
+        padding-top: 25%;
+    }
+
+}
+
+
+
+

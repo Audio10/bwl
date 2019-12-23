@@ -1,0 +1,102 @@
+.fondo {
+    background: url('../../images/fondo.png') no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.text--aling {
+    padding-top: 1em;
+    padding-left: 1em;
+    color: #c52764;
+}
+
+.formulario--izquierda {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.circulo {
+    position: absolute;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.circulo--izquierdo {
+    bottom: 10%;
+    left: -20em;
+    width: 35em !important;
+    height: 35em !important;
+    background: #448cdc !important;
+}
+
+.circulo--arriba {
+    top: -15%;
+    left: 26.5em;
+    width: 20em !important;
+    height: 20em !important;
+    background: #b1e3f3 !important;
+}
+
+.circulo--medio {
+    background: #5f94e0 !important;
+    bottom: 35%;
+    left: 13rem;
+    width: 3em;
+    height: 3em;
+    opacity: 0.4;
+}
+
+@media screen and (max-width: 1440px) {
+    .circulo--izquierdo {
+        bottom: 25%;
+        left: -20em;
+        width: 35em !important;
+        height: 35em !important;
+    }
+    
+    .circulo--arriba {
+        top: -15%;
+        left: 14.5em;
+    }
+    
+    .circulo--medio {
+        background: #5f94e0 !important;
+        bottom: 52%;
+        left: 12.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .formulario--izquierda {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .circulo--arriba {
+        
+        width: 16em !important;
+        height: 16em !important;
+        top: -15%;
+        left: 10.5em;
+    }
+    
+}
+
+@media screen and (max-width: 426px) {
+    .circulo--izquierdo {
+        display: none !important;
+    }
+    .circulo--arriba {
+        display: none !important;
+    }
+    .circulo--medio {
+        display: none !important;
+    }
+    
+}

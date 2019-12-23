@@ -1,0 +1,69 @@
+.item{
+    background: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 25px;
+    overflow: hidden;
+    
+    margin-top: 20px;
+    padding: 10px;
+    width: 400px;
+    height: 220px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(50px, auto);
+}
+
+.item__imagen {
+    grid-column: 1 / 2;
+    grid-row: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item__info {
+    grid-column: 2 / 5;
+    grid-row: 1; 
+    display: flex;
+    align-items: flex-end;
+}
+
+
+.item--mutation {
+    grid-row: 2; 
+    grid-column: 1/5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: large;
+    color: red;
+}
+
+.item__name{
+    font-weight: bold;
+}
+
+.item__imagen div {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+.item__circulo--conmutacion {
+    background-color: red;
+}
+
+.item__circulo--sinmutacion {
+    background-color: green;
+}
+
+
+@media screen and (max-width: 768px) {
+    .item{
+        width: 300px;
+        height: 200px;
+    }
+
+}
